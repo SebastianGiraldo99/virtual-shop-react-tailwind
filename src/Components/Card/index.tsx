@@ -1,24 +1,27 @@
-import React from "react";
+import { IProductInterface } from "../../Interfaces/IProduct.interface";
+import { ShoppingCardContex } from "../../Context";
+import { useContext } from "react";
 
 interface CardProps {
-    children: React.ReactNode;
-}
+    data: IProductInterface
+};
 
-const Card :React.FC<CardProps> = ({children}) =>{
+const Card: React.FC<CardProps> = ({data}) =>{
+    const {count, setCount} = useContext(ShoppingCardContex);    
     return (
-    <div className="w-60 h-80 bg-gray-50 p-3 flex flex-col gap-1 rounded-2xl">
-        <div className="h-48 bg-gray-700 rounded-xl">
-            <img src="https://bcw-media.s3.ap-northeast-1.amazonaws.com/text_to_image_v6_poster_01_f038887d26.jpg" alt="Product" className="w-full h-full object-cover" />
+    <div className="w-full h-full bg-gray-50 p-3 flex flex-col gap-1 rounded-2xl my-8">
+        <div className="h-1/2 bg-gray-700 rounded-xl">
+            <img src={data.images[0]} alt={data.title} className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col gap-4">
             <div className="flex flex-row justify-between">
             <div className="flex flex-col">
-                <span className="text-xl font-bold">{children?.toString()}</span>
-                <p className="text-xs text-gray-700">ID: 23432252</p>
+                <span className="text-xl font-bold">{data.title}</span>
+                <p className="text-xs text-gray-700">{data.category.name}</p>
             </div>
-            <span className="font-bold text-red-600">$25.99</span>
+            <span className="font-bold text-red-600">${data.price}</span>
             </div>
-            <button className="hover:bg-sky-700 text-gray-50 bg-sky-800 py-2 rounded-md">Add to cart</button>
+            <button onClick={()=> setCount(count + 1)} className="hover:bg-sky-700 text-gray-50 bg-sky-800 py-2 rounded-md">Add to cart</button>
         </div>
     </div>
     
