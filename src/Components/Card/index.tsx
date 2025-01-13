@@ -7,7 +7,11 @@ interface CardProps {
 };
 
 const Card: React.FC<CardProps> = ({data}) =>{
-    const {count, setCount} = useContext(ShoppingCardContex);    
+    const context = useContext(ShoppingCardContex);
+    if(!context){
+        throw new Error('useContext debe ser usado dentro de ShoppingCardProvider');
+    }
+    const {count, setCount} = context;
     return (
     <div className="w-full h-full bg-gray-50 p-3 flex flex-col gap-1 rounded-2xl my-8">
         <div className="h-1/2 bg-gray-700 rounded-xl">

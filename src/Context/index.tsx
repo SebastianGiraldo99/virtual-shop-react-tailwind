@@ -1,11 +1,16 @@
-import { createContext, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useState } from 'react';
 
-export const ShoppingCardContex = createContext();
+interface shoppingCardContextType {
+    count : number,
+    setCount : Dispatch<SetStateAction<number>>
+}
+
+export const ShoppingCardContex = createContext<shoppingCardContextType|undefined>(undefined);
 
 
 
 
-export const ShoppingCardProvider= ({children})=>{
+export const ShoppingCardProvider= ({children}: {children:React.ReactNode})=>{
     const [count, setCount] = useState(0);
 
     return (
@@ -16,5 +21,4 @@ export const ShoppingCardProvider= ({children})=>{
             {children}
         </ShoppingCardContex.Provider>
     );
-
 }
