@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({data}) =>{
     return (
     <div className="w-full h-full bg-gray-50 p-3 flex flex-col gap-1 rounded-2xl my-8">
         <div className="h-1/2 bg-gray-700 rounded-xl">
-            <img src={data.images[0]} alt={data.title} className="w-full h-full object-cover" />
+            <img src={data.images[0]} alt={data.title} className="w-full h-full object-cover rounded-xl" />
         </div>
         <div className="flex flex-col gap-4">
             <div className="flex flex-row justify-between">
