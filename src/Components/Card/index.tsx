@@ -11,11 +11,30 @@ const Card: React.FC<CardProps> = ({data}) =>{
     if(!context){
         throw new Error('useContext debe ser usado dentro de ShoppingCardProvider');
     }
-    const {count, setCount, openProductDetail, setProductShow} = context;
+    const {count, setCount, openProductDetail, setProductShow, setCartProduct, cartProduct, openShoppingCart, closeProductDetail, closeShoppingCart} = context;
 
     const showProduct = (productDetail: IProductInterface) =>{
-        openProductDetail()
+        openProductDetail();
+        closeShoppingCart();
         setProductShow(productDetail)
+    }
+
+    const addProductsToCart = (event:React.MouseEvent, productData: IProductInterface) =>{
+        event.stopPropagation();
+        setCartProduct([...cartProduct, productData]);
+        setCount(count + 1);
+        closeProductDetail();
+        openShoppingCart();
+    }
+
+    const disabledButton= (id:number) =>{
+        const isInCard = cartProduct.filter(product => product.id === id).length>0;
+        if(isInCard){
+            return <button  className="hover:bg-gray-500 text-gray-50 bg-gray-400 py-2 rounded-md cursor-not-allowed">Added</button>
+        }else{
+            return <button onClick={(event)=> addProductsToCart(event, data)} className="hover:bg-sky-700 text-gray-50 bg-sky-800 py-2 rounded-md">Add to cart</button>
+        }
+        
     }
 
     return (
@@ -31,7 +50,7 @@ const Card: React.FC<CardProps> = ({data}) =>{
             </div>
             <span className="font-bold text-red-600">${data.price}</span>
             </div>
-            <button onClick={()=> setCount(count + 1)} className="hover:bg-sky-700 text-gray-50 bg-sky-800 py-2 rounded-md">Add to cart</button>
+            {disabledButton(data.id)}
         </div>
     </div>
     

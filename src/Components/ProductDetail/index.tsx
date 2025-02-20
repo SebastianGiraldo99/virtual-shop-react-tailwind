@@ -8,7 +8,6 @@ const ProductDetail = () =>{
             throw new Error('useContext debe ser usado dentro de ShoppingCardProvider');
         }
     const {showProductDetail, closeProductDetail, productToShow} = context;
-    console.log('PRODUCT TO SHOW : ',productToShow)
 
     return (
         <aside className={`${showProductDetail ? 'flex' : 'hidden'} product-detail  flex-col fixed bg-white right-0 border border-black rounded-lg`}>

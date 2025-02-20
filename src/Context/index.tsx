@@ -1,6 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 import { IProductInterface } from '../Interfaces/IProduct.interface';
 import { getDefaultProduct } from '../Factory/Product.factory';
+import { ICheckOutInterface } from '../Interfaces/ICheckOutInterface';
 
 interface shoppingCardContextType {
     count : number,
@@ -9,7 +10,17 @@ interface shoppingCardContextType {
     openProductDetail: () => void,
     closeProductDetail: ()=>void,
     productToShow: IProductInterface,
-    setProductShow :Dispatch<SetStateAction<IProductInterface>>
+    setProductShow :Dispatch<SetStateAction<IProductInterface>>,
+    cartProduct : IProductInterface[],
+    setCartProduct : Dispatch<SetStateAction<IProductInterface[]>>,
+    isShowShoppingCart : boolean,
+    openShoppingCart : () => void,
+    closeShoppingCart : () => void,
+    order : ICheckOutInterface[],
+    setOrder : Dispatch<SetStateAction<ICheckOutInterface[]>>,
+
+
+
 }
 
 const initialObjetcProduct : IProductInterface = getDefaultProduct();
@@ -20,7 +31,7 @@ export const ShoppingCardContex = createContext<shoppingCardContextType|undefine
 
 
 export const ShoppingCardProvider= ({children}: {children:React.ReactNode})=>{
-    // Shopping cart
+    // Shopping cart ~ Increment Cart
     const [count, setCount] = useState(0);
 
     // Open Close ProductDetail
@@ -30,6 +41,14 @@ export const ShoppingCardProvider= ({children}: {children:React.ReactNode})=>{
 
     // Product To show
     const [productToShow, setProductShow] = useState(initialObjetcProduct);
+    // ShoppingCart ~ Adding produt to cart
+    const [cartProduct, setCartProduct] = useState<IProductInterface[]>([]);
+    const [isShowShoppingCart, setShowShoppingCart] = useState(false);
+    const openShoppingCart = () => setShowShoppingCart(true);
+    const closeShoppingCart = () => setShowShoppingCart(false);
+    
+    const [order, setOrder] = useState<ICheckOutInterface[]>([]);
+
 
     return (
         <ShoppingCardContex.Provider value={{
@@ -39,7 +58,14 @@ export const ShoppingCardProvider= ({children}: {children:React.ReactNode})=>{
             openProductDetail,
             closeProductDetail,
             productToShow,
-            setProductShow
+            setProductShow,
+            cartProduct,
+            setCartProduct,
+            isShowShoppingCart,
+            openShoppingCart,
+            closeShoppingCart,
+            order,
+            setOrder
         }}>
             {children}
         </ShoppingCardContex.Provider>
