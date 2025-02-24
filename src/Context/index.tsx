@@ -24,6 +24,7 @@ interface shoppingCardContextType {
 }
 
 const initialObjetcProduct : IProductInterface = getDefaultProduct();
+// const initialCheckOut : ICheckOutInterface = getDefaultCheckOut();
 
 export const ShoppingCardContex = createContext<shoppingCardContextType|undefined>(undefined);
 

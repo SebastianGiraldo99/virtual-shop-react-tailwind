@@ -5,10 +5,18 @@ interface propsOrderCard {
     title: string,
     imageUrl : string,
     price: number,
-    handleDelete : (id:number) => void
+    handleDelete? : (id:number) => void
 }
 const OrderCard: React.FC<propsOrderCard> = props =>{
     const {id, title, imageUrl, price, handleDelete}  = props;
+    let renderXmarkIcon;
+    if(handleDelete ){
+        renderXmarkIcon =
+        <XMarkIcon 
+            className='w-6 h-6 text-black cursor-pointer'
+            onClick={()=>handleDelete(id)}
+        ></XMarkIcon>;
+    }
     return (
         <div className="w-full h-30 flex justify-between gap-2 bg-neutral-200 rounded-lg shadow p-2 my-1 ">
             <div className="flex  gap-2">
@@ -21,10 +29,7 @@ const OrderCard: React.FC<propsOrderCard> = props =>{
                 </div>
             </div>
             <div className="">
-            <XMarkIcon 
-            className='w-6 h-6 text-black cursor-pointer'
-            onClick={()=>handleDelete(id)}
-            ></XMarkIcon>
+                {renderXmarkIcon}
             </div>  
         </div>
     );

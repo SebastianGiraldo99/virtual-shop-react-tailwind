@@ -1,6 +1,7 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import './styles.css';
-import { useContext } from 'react';
 import { ShoppingCardContex } from '../../Context';
 import { OrderCard } from '../OrderCard';
 import {totalPriceFn} from '../../utils/index';
@@ -22,6 +23,7 @@ const CheckOutSideMenu = () =>{
     const handleCheckOut = () =>{
         const orderToAdd : ICheckOutInterface = {
             //CREAR INTERFAZ
+            id: new Date().getTime()+1,
             date : new Date().toISOString(),
             products: cartProduct,
             totalProducts : cartProduct.length,
@@ -31,7 +33,6 @@ const CheckOutSideMenu = () =>{
         setCartProduct([]);
         setCount(0);
         
-
     }
 
     return (
@@ -62,8 +63,10 @@ const CheckOutSideMenu = () =>{
                         ${totalPriceFn(cartProduct)}
                     </span>
                 </p>
+                <Link to='/my-orders/last'>
                 <button className='w-full bg-black py-3 text-yellow-50 rounded-lg'
                 onClick={()=> handleCheckOut()}>CheckOut</button>
+                </Link>
             </div>
         </aside>
     );

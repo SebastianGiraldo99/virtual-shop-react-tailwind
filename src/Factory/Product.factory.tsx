@@ -1,3 +1,4 @@
+import { ICheckOutInterface } from "../Interfaces/ICheckOutInterface";
 import { ICategory, IProductInterface } from "../Interfaces/IProduct.interface";
 
 export const getDefaultProduct = () : IProductInterface =>({
@@ -16,4 +17,12 @@ export const getDefaultCategory = ():ICategory=>({
     name: 'Default Category',
     image: ''
 });
+
+export const getDefaultCheckOut = ():ICheckOutInterface => ({
+    date : new Date().toISOString(),
+    products: [defaultProduct],
+    totalProducts : 0,
+    totalPrice : 0
+})
 const defaultCategory: ICategory = getDefaultCategory();
+const defaultProduct : IProductInterface = getDefaultProduct();
