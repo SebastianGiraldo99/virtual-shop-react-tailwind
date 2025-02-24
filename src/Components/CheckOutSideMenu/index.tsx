@@ -32,6 +32,7 @@ const CheckOutSideMenu = () =>{
         setOrder([...order, orderToAdd]);
         setCartProduct([]);
         setCount(0);
+        closeShoppingCart()
         
     }
 
