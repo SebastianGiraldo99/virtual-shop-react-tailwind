@@ -44,10 +44,8 @@ const OrdersCard: React.FC<propsOrderCard> = props =>{
                 </div>
             </div>
             <div className="flex px-6 pb-8 sm:px-8">
-                <Link key={id} to={`/my-orders/${id}`}>
-                    <a aria-describedby="tier-company" className="flex items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-white hover:text-white focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black">
+                <Link key={id} to={`/my-orders/${id}`} className="flex items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-white hover:text-white focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black">
                     View Order
-                    </a>
                 </Link>
             </div>
         </div>
