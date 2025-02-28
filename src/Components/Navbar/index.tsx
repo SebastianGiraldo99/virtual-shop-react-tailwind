@@ -30,11 +30,11 @@ const Navbar = ()=>{
                 </li>
                 <li>
                     <NavLink 
-                    to={'/clothes'}
+                    to={'/shoes'}
                     className={({isActive})=>
                         isActive? activeStyle : undefined
                     }>
-                        Clothes
+                        Shoes
                     </NavLink>
                 </li>
                 <li>
@@ -48,7 +48,7 @@ const Navbar = ()=>{
                 </li>
                 <li>
                     <NavLink 
-                    to={'/furnitures'}
+                    to={'/furniture'}
                     className={({isActive})=>
                         isActive? activeStyle : undefined
                     }>
@@ -57,11 +57,11 @@ const Navbar = ()=>{
                 </li>
                 <li>
                     <NavLink 
-                    to={'/toys'}
+                    to={'/miscellaneous'}
                     className={({isActive})=>
                         isActive? activeStyle : undefined
                     }>
-                        Toys
+                        Miscellaneous
                     </NavLink>
                 </li>
                 <li>
