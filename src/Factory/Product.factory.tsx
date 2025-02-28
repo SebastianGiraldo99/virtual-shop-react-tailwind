@@ -19,6 +19,7 @@ export const getDefaultCategory = ():ICategory=>({
 });
 
 export const getDefaultCheckOut = ():ICheckOutInterface => ({
+    id: 0,
     date : new Date().toISOString(),
     products: [defaultProduct],
     totalProducts : 0,
